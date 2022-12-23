@@ -62,7 +62,7 @@ class Bot(commands.Bot):
             if len(self.rating_scores)!=0:
                 rating = sum(self.rating_scores)
                 score = round(rating/len(self.rating_scores), 2)
-                await ctx.send(f"Чат поставил оценку {score}! Всего оценок: {len(self.rating_scores)}")
+                await ctx.send(f"/announce Чат поставил оценку {score}! Всего оценок: {len(self.rating_scores)}")
                 self.rating_scores.clear()
                 self.rating_users.clear()
             else:
@@ -71,7 +71,7 @@ class Bot(commands.Bot):
 
         else:
             self.rating_running = True
-            await ctx.send("Началось оценивание по шкале от 1 до 10! Пиши свою оценку в чат.")
+            await ctx.send("/announce Началось оценивание по шкале от 1 до 10! Пиши свою оценку в чат.")
     
 
 
