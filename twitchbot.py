@@ -7,7 +7,7 @@ load_dotenv()
 class Bot(commands.Bot):
 
     def __init__(self):
-        super().__init__(token=os.getenv("TWITCH_TOKEN"), prefix='!', initial_channels=['deciider'])
+        super().__init__(token=os.getenv("TWITCH_TOKEN"), prefix='!', initial_channels=['declider'])
 
         self.rating_users = []
         self.rating_scores = []
@@ -36,7 +36,7 @@ class Bot(commands.Bot):
 
 
 
-    @commands.cooldown(rate=1, per=30, bucket=commands.Bucket.channel)
+    @commands.cooldown(rate=1, per=600, bucket=commands.Bucket.channel)
     @commands.command(name="нарисуй", aliases=["рисунок"])
     async def draw(self, ctx: commands.Context):
         emote = ctx.message.content.split(" ")[-1]
