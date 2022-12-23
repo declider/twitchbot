@@ -7,7 +7,7 @@ load_dotenv()
 class Bot(commands.Bot):
 
     def __init__(self):
-        super().__init__(token=os.getenv("TWITCH_TOKEN"), prefix='!', initial_channels=['declider'])
+        super().__init__(token=os.getenv("TWITCH_TOKEN"), prefix='!', initial_channels=['segall'])
 
         self.rating_users = []
         self.rating_scores = []
