@@ -7,7 +7,7 @@ load_dotenv()
 class Bot(commands.Bot):
 
     def __init__(self):
-        super().__init__(token=os.getenv("TWITCH_TOKEN"), prefix='!', initial_channels=['segall'])
+        super().__init__(token=os.getenv("TWITCH_TOKEN"), prefix='?', initial_channels=['segall'])
 
         self.rating_users = []
         self.rating_scores = []
@@ -24,8 +24,6 @@ class Bot(commands.Bot):
         if message.echo:
             return
 
-        await self.handle_commands(message)
-
         if self.rating_running:
             if message.author.id not in self.rating_users:
                 score = message.content.split(" ")[0].strip()
@@ -34,8 +32,10 @@ class Bot(commands.Bot):
                         self.rating_scores.append(int(score))
                         self.rating_users.append(message.author.id)
 
+        await self.handle_commands(message)
 
-
+        
+        
     @commands.cooldown(rate=1, per=600, bucket=commands.Bucket.channel)
     @commands.command(name="нарисуй", aliases=["рисунок"])
     async def draw(self, ctx: commands.Context):
@@ -46,7 +46,7 @@ class Bot(commands.Bot):
         if len(r.text)>=100:
             await ctx.send(r.text[0:500])
         else:
-            ctx.command._cooldowns[0].reset()
+            await ctx.command._cooldowns[0].reset()
 
 
 
